@@ -30,4 +30,9 @@ gir *$REPO_NAME* *$USER_NAME*
 ```
 gir.sh *$REPO_NAME* *$USER_NAME*
 ```
+## From the repo directory
+
+```
+./gir.sh *$REPO_NAME* *$USER_NAME*
+```
 You will be prompted for various options such as preferred URL method (SSH or HTTPS), or if you want to add an empty README.md
