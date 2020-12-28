@@ -5,6 +5,9 @@
 
 # push to remote repo
 
+# UPDATE 2020-12-27
+# Support for new Github tokens integrated
+
 createrepo()
 {
 	#Creates Repo
@@ -15,7 +18,7 @@ createrepo()
 	GIT_REPO=$1
 	GIT_USERNAME=$2
 	printf "Creating Github repository => '$GIT_REPO'...\n"
-	curl -u $GIT_USERNAME https://api.github.com/user/repos -d '{"name":"'$GIT_REPO'"}' > /dev/null || printf "ERR: Unkown Error Ocurred"
+	curl -u $GIT_USERNAME:$PERSONAL_GITHUB_ACCESS_TOKEN https://api.github.com/user/repos -d '{"name":"'$GIT_REPO'"}' > /dev/null || printf "ERR: Unkown Error Ocurred"
 	printf "Repo Created!\n"
 	initrepo $usessh
 	read -p "Do you want to create an empty README file (y/n):" doreadme
@@ -32,7 +35,7 @@ createreadme(){
 }
 
 initrepo(){
-	# 
+	# Initializes repo 
 	ORIGIN_URL="https://github.com/$GIT_USERNAME/$GIT_REPO.git"
 	git init
 	git remote add origin "$ORIGIN_URL"
