@@ -18,6 +18,7 @@ createrepo()
 	GIT_REPO=$1
 	GIT_USERNAME=$2
 	printf "Creating Github repository => '$GIT_REPO'...\n"
+	mkdir -p $GIT_REPO ; cd $_
 	curl -u $GIT_USERNAME:$PERSONAL_GITHUB_ACCESS_TOKEN https://api.github.com/user/repos -d '{"name":"'$GIT_REPO'"}' > /dev/null || printf "ERR: Unkown Error Ocurred"
 	printf "Repo Created!\n"
 	initrepo $usessh
